@@ -1,6 +1,6 @@
 # akory
 
-A simple typewriter effect echo command written in bash
+A simple typewriter effect command written in bash <img src="https://github.com/RajaRakoto/github-docs/blob/master/dago.gif?raw=true" width=15>
 
 <img src="https://github.com/gaetan1903/akory/raw/main/akory-preview.gif"/>
 

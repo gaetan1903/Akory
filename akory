@@ -1,0 +1,58 @@
+#!/bin/bash
+
+mena='\e[0;31m'
+tsotra='\e[0;m'
+maintso='\e[0;32m'
+
+# fonction affichant un output d'aide au cas de mauvaise utilisation de la commande
+function usage { 
+    echo -e "Usage: ${maintso} $0 ${tsotra} [-d <delay>] text \n" 1>&2;
+    echo -e "-d: write delay for each character. default 0.1" 1>&2;
+
+    exit $1;
+}
+
+
+function typewriter
+{
+    text="$1"
+    delay="$2"
+
+    for i in $(seq 0 $(expr length "${text}")) ; do
+        echo -n "${text:$i:1}"
+        sleep ${delay}
+    done
+
+    echo
+}
+
+
+# Analyse des parametres entrée avec la commande
+while getopts "d:" option; do
+    case "${option}" in
+        d)
+            delay=${OPTARG}
+
+            regex_number='^[0-9.]+$'
+            if ! [[ $delay =~ $regex_number ]] ; then
+                echo "${mena}Not a number $delay ${tsotra}"
+                usage 1             
+            fi
+            ;;
+        *)
+            usage 1
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [ $# -le 0 ] ; then
+    echo -e "${mena}Missing text \n${tsotra}";
+    usage 1
+fi
+
+if [ ! -z "${delay}" ] ; then
+    typewriter "$@" $delay
+else
+    typewriter "$@" .1
+fi

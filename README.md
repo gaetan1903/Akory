@@ -11,15 +11,11 @@ https://user-images.githubusercontent.com/43904633/184029034-1c1cb65e-2008-4373-
 ## INSTALLATION 
 
 ```s 
-wget https://raw.githubusercontent.com/gaetan1903/akory/main/akory
+sudo wget https://raw.githubusercontent.com/gaetan1903/akory/main/akory -O /usr/local/bin/akory
 ```
 
 ```s 
-chmod +x akory
-```
-
-```s 
-sudo mv akory /usr/local/bin/
+sudo chmod a+rx /usr/local/bin/akory
 ```
 
 ## USAGE 

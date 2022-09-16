@@ -19,7 +19,7 @@ function typewriter
     delay="$2"
 
     for i in $(seq 0 $(expr length "${text}")) ; do
-        echo -n "${text:$i:1}"
+        echo -en "${text:$i:1}"
         sleep ${delay}
     done
 
@@ -46,13 +46,19 @@ while getopts "d:" option; do
 done
 shift $((OPTIND-1))
 
-if [ $# -le 0 ] ; then
+
+if test ! -t 0; then
+    text=`cat < /dev/stdin`
+elif [ $# -le 0 ] ; then
     echo -e "${mena}Missing text \n${tsotra}";
     usage 1
+else
+    text=$@
 fi
 
+
 if [ ! -z "${delay}" ] ; then
-    typewriter "$@" $delay
+    typewriter "$text" $delay
 else
-    typewriter "$@" .1
+    typewriter "$text" .1
 fi

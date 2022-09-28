@@ -20,6 +20,8 @@ sudo chmod a+rx /usr/local/bin/akory
 
 ## USAGE 
 
+### AS PARAMETER 
+
 ```s
 akory "Hello world " 
 ```
@@ -35,3 +37,19 @@ akory -d 0.002 "`figlet 'd e  a o n a   a a ? ?'`" | lolcat
 ```s
 akory -d 0.002 "`neofetch`" 
 ```
+
+### AS PIPE INPUT 
+
+```s
+date | akory 
+```
+
+```s
+echo "Hello world " | akory -d 0.2
+```
+
+```s
+neofetch |akory -d .001
+```
+
+
